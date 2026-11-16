@@ -1,0 +1,13 @@
+> python main.py book VER-MAL-0713-1 --name "Ana Garcia" --seats 2
+
+Booking confirmed: BB-20261116-A5CFU
+Traveller: Ana Garcia
+Trip: VerdeBus, Madrid to Malaga
+Leaves 13 Jul 2026 12:30, arrives 13 Jul 19:35
+Seats: 2, total EUR 106.02
+Changeable: yes, refundable: yes
+Seats left on this bus: 8
+
+> python main.py book VER-MAL-0713-1 --name "Ana Garcia" --seats 30
+
+Error: only 8 seats left on VER-MAL-0713-1

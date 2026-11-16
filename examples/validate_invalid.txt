@@ -1,0 +1,16 @@
+> python main.py validate data/offers_invalid.csv
+
+1 offers accepted, 12 rejected.
+  row   2  price_eur        price must be above 0: -12.5
+  row   3  destination      unknown destination: XXX
+  row   4  departure        not a valid date and time: 2026-07-32 08:00
+  row   5  arrival          arrival is before departure
+  row   6  rating           rating must be between 1 and 5: 7.2
+  row   7  seats_available  cannot be negative: -3
+  row   8  offer_id         wrong ID format: sol_bar_12
+  row   9  price_eur        missing value
+  row  10  transfers        not a number: two
+  row  11  company          unknown company: BUS
+  row  12  changeable       must be yes or no: maybe
+  row  14  offer_id         duplicate ID: SOL-BAR-0716-1
+Rejected rows saved to output\rejected_offers.csv

@@ -1,0 +1,64 @@
+> python -m pytest -v
+
+tests/test_booking.py::test_booking_lowers_seats PASSED
+tests/test_booking.py::test_reference_format PASSED
+tests/test_booking.py::test_references_are_unique PASSED
+tests/test_booking.py::test_can_book_the_last_seats PASSED
+tests/test_booking.py::test_booking_is_refused[not enough seats] PASSED
+tests/test_booking.py::test_booking_is_refused[sold out] PASSED
+tests/test_booking.py::test_booking_is_refused[zero seats] PASSED
+tests/test_booking.py::test_booking_is_refused[no name] PASSED
+tests/test_booking.py::test_bookings_are_saved_and_applied PASSED
+tests/test_booking.py::test_bad_reference_in_file PASSED
+tests/test_booking.py::test_no_bookings_file_gives_empty_list PASSED
+tests/test_filtering.py::test_offer_that_fits_is_kept PASSED
+tests/test_filtering.py::test_each_rule_removes_an_offer PASSED
+tests/test_filtering.py::test_boundaries_are_kept PASSED
+tests/test_filtering.py::test_sold_out_offer_is_removed PASSED
+tests/test_filtering.py::test_no_offers_gives_empty_result PASSED
+tests/test_filtering.py::test_bad_requests[changes0] PASSED
+tests/test_filtering.py::test_bad_requests[changes1] PASSED
+tests/test_filtering.py::test_bad_requests[changes2] PASSED
+tests/test_filtering.py::test_bad_requests[changes3] PASSED
+tests/test_filtering.py::test_bad_requests[changes4] PASSED
+tests/test_scoring.py::test_normalise_lower_is_better PASSED
+tests/test_scoring.py::test_normalise_higher_is_better PASSED
+tests/test_scoring.py::test_all_values_the_same_gives_100 PASSED
+tests/test_scoring.py::test_single_offer_gets_100 PASSED
+tests/test_scoring.py::test_missing_value_gets_0 PASSED
+tests/test_scoring.py::test_extreme_value_does_not_squeeze_the_rest PASSED
+tests/test_scoring.py::test_all_criteria_are_registered PASSED
+tests/test_scoring.py::test_bad_weights[sum above 1] PASSED
+tests/test_scoring.py::test_bad_weights[weight above 0.5] PASSED
+tests/test_scoring.py::test_bad_weights[only 2 criteria] PASSED
+tests/test_scoring.py::test_bad_weights[unknown criterion] PASSED
+tests/test_scoring.py::test_bad_weights[negative] PASSED
+tests/test_scoring.py::test_weight_limit_is_allowed PASSED
+tests/test_scoring.py::test_cheaper_and_faster_offer_wins PASSED
+tests/test_scoring.py::test_tie_is_broken_by_offer_id PASSED
+tests/test_scoring.py::test_scores_stay_between_0_and_100 PASSED
+tests/test_scoring.py::test_profiles_file_is_valid PASSED
+tests/test_validation.py::test_good_row_is_accepted PASSED
+tests/test_validation.py::test_full_dataset_loads_without_rejections PASSED
+tests/test_validation.py::test_every_planted_error_is_caught PASSED
+tests/test_validation.py::test_bad_values_are_rejected[price_eur--5] PASSED
+tests/test_validation.py::test_bad_values_are_rejected[price_eur-] PASSED
+tests/test_validation.py::test_bad_values_are_rejected[price_eur-cheap] PASSED
+tests/test_validation.py::test_bad_values_are_rejected[departure-2026-07-32 09:00] PASSED
+tests/test_validation.py::test_bad_values_are_rejected[arrival-2026-07-12 08:00] PASSED
+tests/test_validation.py::test_bad_values_are_rejected[rating-5.1] PASSED
+tests/test_validation.py::test_bad_values_are_rejected[seats_available--1] PASSED
+tests/test_validation.py::test_bad_values_are_rejected[changeable-maybe] PASSED
+tests/test_validation.py::test_bad_values_are_rejected[company-XYZ] PASSED
+tests/test_validation.py::test_rating_limits_are_allowed[1] PASSED
+tests/test_validation.py::test_rating_limits_are_allowed[5] PASSED
+tests/test_validation.py::test_zero_seats_is_valid_data PASSED
+tests/test_validation.py::test_missing_co2_becomes_none PASSED
+tests/test_validation.py::test_bad_id_format[sol-mal-0712-1] PASSED
+tests/test_validation.py::test_bad_id_format[SOL-MAL-712-1] PASSED
+tests/test_validation.py::test_bad_id_format[SOL-MAL-0712-1x] PASSED
+tests/test_validation.py::test_bad_id_format[SOLMAL07121] PASSED
+tests/test_validation.py::test_id_must_match_company_and_destination PASSED
+tests/test_validation.py::test_missing_file PASSED
+tests/test_validation.py::test_missing_columns PASSED
+============================= 61 passed in 0.21s ==============================

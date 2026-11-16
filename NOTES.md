@@ -103,3 +103,25 @@ transfers and rating as extra criteria.
 - Bookings are saved to `output/bookings.json` with the fare conditions (changeable,
   refundable). On the next run `apply_bookings` takes those seats away again.
 - Booking more seats than are left raises `BookingError`.
+
+## Section 8: Command line
+
+- `main.py` uses argparse with four commands: `search`, `compare`, `book`, `validate`.
+  I chose separate commands over a menu so every run can be copied into the README and
+  the report and gives the same output.
+- Errors from my own exceptions are printed as one line and logged, and the program
+  exits with code 1. Bad dates are caught by argparse.
+- Log file: `output/busbidder.log` (loading summary, every rejected row, errors).
+
+## Section 9: Tests
+
+- 61 tests with pytest, in four files (validation, filtering, scoring, booking).
+- Normal cases, invalid values, missing values (empty price, missing CO2, missing file
+  and columns) and boundaries (rating 1 and 5, exactly max price, last seat, last
+  minute of the last day, weight exactly 0.5, one offer only, all values the same).
+- One test failed at first because 50.000000000000014 is not 50. Fixed with pytest.approx.
+
+## Section 10: README and examples
+
+- README has the exact commands. `examples/` has the output from each command, the test
+  run and the log file.

@@ -1,0 +1,23 @@
+> python main.py compare MAL --from 2026-07-12 --to 2026-07-14 --seats 2 --max-price 60
+
+839 offers loaded, 14 pass the hard rules.
+  removed 781: wrong destination
+  removed  36: outside travel dates
+  removed   4: not enough seats
+  removed   4: over max price
+
+balanced:
+  1. SOL-MAL-0713-1 SolRuta, 13 Jul 09:30, EUR 28.14  score 70.4
+  2. COS-MAL-0713-1 CostaLink, 13 Jul 09:30, EUR 41.61  score 68.3
+budget:
+  1. SOL-MAL-0713-1 SolRuta, 13 Jul 09:30, EUR 28.14  score 69.8
+  2. SOL-MAL-0713-2 SolRuta, 13 Jul 12:00, EUR 31.46  score 68.9
+business:
+  1. VER-MAL-0713-1 VerdeBus, 13 Jul 12:30, EUR 53.01  score 77.6
+  2. COS-MAL-0713-1 CostaLink, 13 Jul 09:30, EUR 41.61  score 74.0
+flexible:
+  1. VER-MAL-0713-1 VerdeBus, 13 Jul 12:30, EUR 53.01  score 73.8
+  2. SOL-MAL-0714-1 SolRuta, 14 Jul 15:30, EUR 30.14  score 71.4
+eco:
+  1. VER-MAL-0713-1 VerdeBus, 13 Jul 12:30, EUR 53.01  score 73.0
+  2. COS-MAL-0713-1 CostaLink, 13 Jul 09:30, EUR 41.61  score 51.0

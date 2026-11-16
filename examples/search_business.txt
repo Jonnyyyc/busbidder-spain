@@ -1,0 +1,23 @@
+> python main.py search MAL --from 2026-07-12 --to 2026-07-14 --seats 2 --max-price 60 --profile business
+
+839 offers loaded, 14 pass the hard rules.
+  removed 781: wrong destination
+  removed  36: outside travel dates
+  removed   4: not enough seats
+  removed   4: over max price
+
+Profile: business (Wants to arrive fast and leave early in the morning)
+Weights: price 10%, duration 40%, departure 25%, flexibility 15%, rating 10%
+
+ #  Offer           Company         Leaves          EUR   Hrs Price   Dur   Dep  Flex  Rate  Total
+--------------------------------------------------------------------------------------------------
+ 1  VER-MAL-0713-1  VerdeBus        13 Jul 12:30  53.01   7.1     5    86    71   100   100   77.6
+    Best on flexibility (100) and rating (100), worst on price (5).
+ 2  COS-MAL-0713-1  CostaLink       13 Jul 09:30  41.61   7.3    50    74    95    74    48   74.0
+    Best on departure (95) and flexibility (74), worst on rating (48).
+ 3  CAM-MAL-0714-1  Camino Express  14 Jul 17:30  56.34   6.2     0   100    32    74    70   66.2
+    Best on duration (100) and flexibility (74), worst on price (0).
+ 4  COS-MAL-0712-2  CostaLink       12 Jul 16:00  38.42   7.3    63    74    44    74    81   66.0
+    Best on rating (81) and flexibility (74), worst on departure (44).
+ 5  COS-MAL-0714-1  CostaLink       14 Jul 11:30  36.59   7.3    70    74    79     0    37   59.9
+    Best on departure (79) and duration (74), worst on flexibility (0).

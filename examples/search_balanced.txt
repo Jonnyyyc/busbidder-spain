@@ -1,0 +1,23 @@
+> python main.py search MAL --from 2026-07-12 --to 2026-07-14 --seats 2 --max-price 60 --profile balanced
+
+839 offers loaded, 14 pass the hard rules.
+  removed 781: wrong destination
+  removed  36: outside travel dates
+  removed   4: not enough seats
+  removed   4: over max price
+
+Profile: balanced (Uses the example weights from the brief)
+Weights: price 40%, duration 25%, departure 15%, flexibility 20%
+
+ #  Offer           Company         Leaves          EUR   Hrs Price   Dur   Dep  Flex  Total
+--------------------------------------------------------------------------------------------
+ 1  SOL-MAL-0713-1  SolRuta         13 Jul 09:30  28.14   7.6   100    61   100     0   70.4
+    Best on price (100) and departure (100), worst on flexibility (0).
+ 2  COS-MAL-0713-1  CostaLink       13 Jul 09:30  41.61   7.3    50    74   100    74   68.3
+    Best on departure (100) and flexibility (74), worst on price (50).
+ 3  SOL-MAL-0714-1  SolRuta         14 Jul 15:30  30.14   8.3    96    25    55    74   67.8
+    Best on price (96) and flexibility (74), worst on duration (25).
+ 4  COS-MAL-0712-2  CostaLink       12 Jul 16:00  38.42   7.3    63    74    51    74   66.1
+    Best on flexibility (74) and duration (74), worst on departure (51).
+ 5  SOL-MAL-0713-2  SolRuta         13 Jul 12:00  31.46   7.6    91    61    87     0   64.7
+    Best on price (91) and departure (87), worst on flexibility (0).
