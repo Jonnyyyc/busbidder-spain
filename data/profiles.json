@@ -1,0 +1,27 @@
+{
+  "balanced": {
+    "description": "Uses the example weights from the brief",
+    "preferred_hour": 10,
+    "weights": {"price": 0.40, "duration": 0.25, "departure": 0.15, "flexibility": 0.20}
+  },
+  "budget": {
+    "description": "Student who wants the cheapest trip and does not mind a long ride",
+    "preferred_hour": 10,
+    "weights": {"price": 0.50, "duration": 0.15, "departure": 0.10, "flexibility": 0.10, "rating": 0.15}
+  },
+  "business": {
+    "description": "Wants to arrive fast and leave early in the morning",
+    "preferred_hour": 7,
+    "weights": {"price": 0.10, "duration": 0.40, "departure": 0.25, "flexibility": 0.15, "rating": 0.10}
+  },
+  "flexible": {
+    "description": "Plans may change, so a changeable and refundable ticket matters most",
+    "preferred_hour": 12,
+    "weights": {"price": 0.25, "duration": 0.15, "departure": 0.10, "flexibility": 0.50}
+  },
+  "eco": {
+    "description": "Wants the lowest CO2 for a fair price",
+    "preferred_hour": 10,
+    "weights": {"price": 0.25, "duration": 0.10, "departure": 0.10, "flexibility": 0.10, "co2": 0.45}
+  }
+}

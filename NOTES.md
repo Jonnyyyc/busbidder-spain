@@ -58,3 +58,48 @@ transfers and rating as extra criteria.
 - CO2 is optional. Blank becomes `None`.
 - Result: all 839 offers in `offers.csv` load, and all 12 planted errors in
   `offers_invalid.csv` are caught.
+
+## Section 4: Filtering (hard rules)
+
+- `TravelRequest` holds what the traveller must have: destination, date range, number
+  of seats, and optional max price per seat, max transfers and changeable ticket.
+- `check()` stops a request that makes no sense (unknown city, end date before start).
+- `filter_offers` returns the kept offers and how many each rule removed. Each offer is
+  counted under the first rule it breaks, so the numbers add up and can be shown to the user.
+- Example: Malaga, 12 to 14 July, 2 seats, max EUR 60 keeps 14 of 839 offers.
+
+## Section 5: Scoring (soft preferences)
+
+- Criteria: price, duration, departure (hours from the preferred hour), flexibility
+  (changeable + refundable), rating, CO2. Each one is a function registered with the
+  `@criterion` decorator, which also stores if lower is better. This is the
+  metaprogramming part. Adding a criterion means writing one function.
+- Each criterion is turned into 0 to 100 within the offers that passed the filter
+  (min-max). Lower-is-better criteria are flipped so 100 is always best.
+- Extreme values: values are clipped to the 5th and 95th percentile before scaling, so
+  one very expensive bus does not push all the others close together.
+- Missing CO2 gets 0. I chose this so a company is not rewarded for leaving the value out.
+  The explanation tells the user when this happened.
+- All values the same: everyone gets 100 on that criterion, so it does not change the order.
+- Weights must use known criteria, add up to 1, and at least 4 must be above 0. No weight
+  can be above 0.5, so one criterion cannot decide everything on its own.
+- Ties: cheaper first, then earlier departure, then offer ID.
+
+## Section 6: Profiles and explanation
+
+- Profiles are in `data/profiles.json`, so they can be changed without touching code.
+  Five profiles: balanced (the weights from the brief), budget, business, flexible, eco.
+  They are checked when loaded.
+- Malaga 12 to 14 July, 2 seats, max EUR 60: balanced and budget pick the cheap SolRuta
+  09:30, business, flexible and eco all pick VerdeBus 12:30. Good for the comparison in
+  the report.
+- Each result gets one line: the two criteria it scored best on and the one it scored worst on.
+
+## Section 7: Booking
+
+- `book()` checks the name and that there are enough seats, then lowers the seat count.
+- Reference format `BB-20261116-K7Q2M`, checked with a regex when bookings are loaded.
+  A new reference is made until it does not match an earlier one.
+- Bookings are saved to `output/bookings.json` with the fare conditions (changeable,
+  refundable). On the next run `apply_bookings` takes those seats away again.
+- Booking more seats than are left raises `BookingError`.
