@@ -6,6 +6,7 @@ written to a file so they can be checked by hand. Loading then carries on.
 
 import csv
 import logging
+import math
 import re
 from datetime import datetime
 from pathlib import Path
@@ -60,24 +61,30 @@ def load_destinations(path):
 
 
 def read_number(row, field, kind=float):
-    text = row[field].strip()
+    text = row[field]
     if text == "":
         raise InvalidOfferError("missing value", field)
     try:
-        return kind(text)
+        number = kind(text)
     except ValueError:
         raise InvalidOfferError(f"not a number: {text}", field)
+    # float() also accepts "inf" and "nan"
+    if not math.isfinite(number):
+        raise InvalidOfferError(f"not a number: {text}", field)
+    return number
 
 
 def read_time(row, field):
+    if row[field] == "":
+        raise InvalidOfferError("missing value", field)
     try:
-        return datetime.strptime(row[field].strip(), TIME_FORMAT)
+        return datetime.strptime(row[field], TIME_FORMAT)
     except ValueError:
         raise InvalidOfferError(f"not a valid date and time: {row[field]}", field)
 
 
 def read_yes_no(row, field):
-    text = row[field].strip().lower()
+    text = row[field].lower()
     if text not in ("yes", "no"):
         raise InvalidOfferError(f"must be yes or no: {row[field]}", field)
     return text == "yes"
@@ -85,7 +92,7 @@ def read_yes_no(row, field):
 
 def check_offer_id(row):
     """The ID must have the right format and agree with the company and destination columns."""
-    match = OFFER_ID.fullmatch(row["offer_id"].strip())
+    match = OFFER_ID.fullmatch(row["offer_id"])
     if not match:
         raise InvalidOfferError(f"wrong ID format: {row['offer_id']}", "offer_id")
     if match.group("company") != row["company"] or match.group("destination") != row["destination"]:
@@ -95,11 +102,11 @@ def check_offer_id(row):
 
 def build_offer(row, companies, destinations):
     """Turn one CSV row into an Offer. Raises InvalidOfferError if something is wrong."""
-    company = companies.get(row["company"].strip())
+    company = companies.get(row["company"])
     if company is None:
         raise InvalidOfferError(f"unknown company: {row['company']}", "company")
 
-    destination = destinations.get(row["destination"].strip())
+    destination = destinations.get(row["destination"])
     if destination is None:
         raise InvalidOfferError(f"unknown destination: {row['destination']}", "destination")
 
@@ -129,8 +136,10 @@ def build_offer(row, companies, destinations):
 
     # CO2 is optional, so an empty value becomes None.
     co2 = None
-    if row["co2_kg"].strip() != "":
+    if row["co2_kg"] != "":
         co2 = read_number(row, "co2_kg")
+        if co2 < 0:
+            raise InvalidOfferError(f"cannot be negative: {co2}", "co2_kg")
 
     return Offer(offer_id, company, destination, departure, arrival, price,
                  counts["transfers"], counts["luggage_kg"], changeable, refundable,
@@ -145,6 +154,8 @@ def load_offers(path, companies, destinations):
 
     # Row 1 is the header, so the first offer is row 2.
     for row_number, row in enumerate(read_csv(path, OFFER_COLUMNS), start=2):
+        # Remove spaces around values. A short row gives None for the missing columns.
+        row = {column: (row[column] or "").strip() for column in OFFER_COLUMNS}
         try:
             offer = build_offer(row, companies, destinations)
             if offer.offer_id in seen:

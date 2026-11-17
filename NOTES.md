@@ -56,6 +56,9 @@ transfers and rating as extra criteria.
 - Sold out offers (0 seats) are valid data, so they are kept and logged. They are
   removed in filtering instead.
 - CO2 is optional. Blank becomes `None`.
+- Spaces around values are removed before checking. A row with too few columns is
+  rejected with "missing value" instead of crashing the program.
+- `float()` accepts "inf" and "nan", so those are checked for and rejected too.
 - Result: all 839 offers in `offers.csv` load, and all 12 planted errors in
   `offers_invalid.csv` are caught.
 
@@ -115,11 +118,14 @@ transfers and rating as extra criteria.
 
 ## Section 9: Tests
 
-- 61 tests with pytest, in four files (validation, filtering, scoring, booking).
+- 67 tests with pytest, in four files (validation, filtering, scoring, booking).
 - Normal cases, invalid values, missing values (empty price, missing CO2, missing file
   and columns) and boundaries (rating 1 and 5, exactly max price, last seat, last
   minute of the last day, weight exactly 0.5, one offer only, all values the same).
 - One test failed at first because 50.000000000000014 is not 50. Fixed with pytest.approx.
+- When I went over the code again I found that a short row and a broken bookings.json
+  crashed the program, and that "inf", "nan" and negative CO2 got through. Fixed, and
+  added tests for each.
 
 ## Section 10: README and examples
 

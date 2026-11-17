@@ -30,14 +30,21 @@ def load_bookings(path):
     path = Path(path)
     if not path.exists():
         return []
-    with open(path, encoding="utf-8") as file:
-        data = json.load(file)
+    try:
+        with open(path, encoding="utf-8") as file:
+            data = json.load(file)
+    except json.JSONDecodeError:
+        raise BookingError(f"{path.name} is not valid JSON. Fix or delete the file.")
 
     bookings = []
     for item in data:
-        if not BOOKING_REF.fullmatch(item["reference"]):
-            raise BookingError(f"bad booking reference in {path.name}: {item['reference']}")
-        bookings.append(Booking(**item))
+        try:
+            booking = Booking(**item)
+        except TypeError:
+            raise BookingError(f"booking in {path.name} has wrong or missing fields: {item}")
+        if not BOOKING_REF.fullmatch(booking.reference):
+            raise BookingError(f"bad booking reference in {path.name}: {booking.reference}")
+        bookings.append(booking)
     return bookings
 
 

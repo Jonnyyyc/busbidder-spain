@@ -68,5 +68,12 @@ def test_bad_reference_in_file(tmp_path):
         load_bookings(path)
 
 
+def test_broken_bookings_file(tmp_path):
+    path = tmp_path / "bookings.json"
+    path.write_text("not json")
+    with pytest.raises(BookingError):
+        load_bookings(path)
+
+
 def test_no_bookings_file_gives_empty_list(tmp_path):
     assert load_bookings(tmp_path / "missing.json") == []

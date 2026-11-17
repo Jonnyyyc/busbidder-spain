@@ -96,7 +96,8 @@ def cmd_compare(args):
 
 def cmd_book(args):
     _, offers, _ = load_data(args.offers)
-    offer = next((o for o in offers if o.offer_id == args.offer_id), None)
+    offers_by_id = {offer.offer_id: offer for offer in offers}
+    offer = offers_by_id.get(args.offer_id.upper())
     if offer is None:
         raise BookingError(f"no offer with ID {args.offer_id}")
 

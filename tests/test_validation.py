@@ -37,6 +37,9 @@ def test_every_planted_error_is_caught():
     ("price_eur", "-5"),
     ("price_eur", ""),
     ("price_eur", "cheap"),
+    ("price_eur", "inf"),
+    ("price_eur", "nan"),
+    ("co2_kg", "-5"),
     ("departure", "2026-07-32 09:00"),
     ("arrival", "2026-07-12 08:00"),
     ("rating", "5.1"),
@@ -73,6 +76,22 @@ def test_bad_id_format(offer_id):
 def test_id_must_match_company_and_destination():
     with pytest.raises(InvalidOfferError):
         check_offer_id(dict(GOOD_ROW, offer_id="CAM-MAL-0712-1"))
+
+
+def test_short_row_is_rejected_not_crashing(tmp_path):
+    path = tmp_path / "offers.csv"
+    path.write_text(",".join(GOOD_ROW) + "\nSOL-MAL-0712-1,SOL,MAL\n")
+    offers, rejected = load_offers(path, COMPANIES, DESTINATIONS)
+    assert offers == []
+    assert len(rejected) == 1
+
+
+def test_spaces_around_values_are_removed(tmp_path):
+    path = tmp_path / "offers.csv"
+    values = [f" {v} " for v in GOOD_ROW.values()]
+    path.write_text(",".join(GOOD_ROW) + "\n" + ",".join(values) + "\n")
+    offers, rejected = load_offers(path, COMPANIES, DESTINATIONS)
+    assert len(offers) == 1
 
 
 def test_missing_file():
