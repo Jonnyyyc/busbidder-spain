@@ -23,4 +23,4 @@ Preferred departure: 07:00
  5  COS-MAL-0714-1  CostaLink       14 Jul 11:30  36.59   7.3    70    74    79     0    37   59.9
     Strong on departure (79) and duration (74). Weakest on flexibility (0).
 
-The top offer is the best match for these hard rules and weights, not the best offer in general.
+This ranking only holds for the hard rules and weights above.

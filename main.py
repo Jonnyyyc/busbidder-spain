@@ -99,8 +99,7 @@ def cmd_search(args):
     print()
     print(format_ranking(rank_offers(kept, profile), profile, args.top))
     print()
-    print("The top offer is the best match for these hard rules and weights, "
-          "not the best offer in general.")
+    print("This ranking only holds for the hard rules and weights above.")
 
 
 def cmd_compare(args):

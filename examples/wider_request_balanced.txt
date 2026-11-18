@@ -23,4 +23,4 @@ Preferred departure: 10:00
  5  SOL-MAL-0713-2  SolRuta         13 Jul 12:00  31.46   7.6    91    61    87     0   64.7
     Strong on price (91) and departure (87). Weakest on flexibility (0).
 
-The top offer is the best match for these hard rules and weights, not the best offer in general.
+This ranking only holds for the hard rules and weights above.

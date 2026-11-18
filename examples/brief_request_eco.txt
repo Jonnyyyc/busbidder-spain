@@ -24,4 +24,4 @@ Preferred departure: 08:00
  5  SOL-MAL-0714-1  SolRuta         14 Jul 15:30  30.14   8.3   100    44    44     0     0   33.8
     Strong on price (100). Weakest on co2 (0).
 
-The top offer is the best match for these hard rules and weights, not the best offer in general.
+This ranking only holds for the hard rules and weights above.

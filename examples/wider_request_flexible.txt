@@ -23,4 +23,4 @@ Preferred departure: 12:00
  5  CAM-MAL-0714-1  Camino Express  14 Jul 17:30  56.34   6.2     0   100    45    74   56.5
     Strong on duration (100) and flexibility (74). Weakest on price (0).
 
-The top offer is the best match for these hard rules and weights, not the best offer in general.
+This ranking only holds for the hard rules and weights above.

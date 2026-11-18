@@ -23,4 +23,4 @@ Preferred departure: 10:00
  5  NOC-MAL-0714-1  NocheVia        14 Jul 21:30  29.76   8.6    98    13     2     0    44   45.7
     Strong on price (98). Weakest on flexibility (0).
 
-The top offer is the best match for these hard rules and weights, not the best offer in general.
+This ranking only holds for the hard rules and weights above.
