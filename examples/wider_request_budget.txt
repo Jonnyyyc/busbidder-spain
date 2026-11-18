@@ -8,16 +8,19 @@
 
 Profile: budget (Student who wants the cheapest trip and does not mind a long ride)
 Weights: price 50%, duration 15%, departure 10%, flexibility 10%, rating 15%
+Preferred departure: 10:00
 
  #  Offer           Company         Leaves          EUR   Hrs Price   Dur   Dep  Flex  Rate  Total
 --------------------------------------------------------------------------------------------------
  1  SOL-MAL-0713-1  SolRuta         13 Jul 09:30  28.14   7.6   100    61   100     0     4   69.8
-    Best on price (100) and departure (100), worst on flexibility (0).
+    Strong on price (100) and departure (100). Weakest on flexibility (0).
  2  SOL-MAL-0713-2  SolRuta         13 Jul 12:00  31.46   7.6    91    61    87     0    37   68.9
-    Best on price (91) and departure (87), worst on flexibility (0).
+    Strong on price (91) and departure (87). Weakest on flexibility (0).
  3  COS-MAL-0712-2  CostaLink       12 Jul 16:00  38.42   7.3    63    74    51    74    81   67.2
-    Best on rating (81) and flexibility (74), worst on departure (51).
+    Strong on rating (81) and flexibility (74). Weakest on departure (51).
  4  SOL-MAL-0712-2  SolRuta         12 Jul 16:30  30.14   8.3    96    25    46     0    70   66.9
-    Best on price (96) and rating (70), worst on flexibility (0).
+    Strong on price (96) and rating (70). Weakest on flexibility (0).
  5  SOL-MAL-0714-1  SolRuta         14 Jul 15:30  30.14   8.3    96    25    55    74     0   64.8
-    Best on price (96) and flexibility (74), worst on rating (0).
+    Strong on price (96) and flexibility (74). Weakest on rating (0).
+
+The top offer is the best match for these hard rules and weights, not the best offer in general.

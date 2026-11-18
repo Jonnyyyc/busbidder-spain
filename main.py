@@ -2,6 +2,7 @@
 
 Examples:
     python main.py search MAL --from 2026-07-12 --to 2026-07-14 --seats 2 --profile budget
+    python main.py search MAL --from 2026-07-12 --to 2026-07-14 --weights price=0.4,duration=0.3,departure=0.1,flexibility=0.2 --leave-at 8
     python main.py compare MAL --from 2026-07-12 --to 2026-07-14
     python main.py book SOL-MAL-0713-1 --name "Ana Garcia" --seats 2
     python main.py validate data/offers_invalid.csv
@@ -16,9 +17,9 @@ from pathlib import Path
 from busbidder.booking import apply_bookings, book, confirmation, load_bookings, save_bookings
 from busbidder.errors import BookingError, DataFileError, InvalidRequestError
 from busbidder.filtering import TravelRequest, filter_offers
-from busbidder.profiles import load_profiles
+from busbidder.profiles import Profile, load_profiles
 from busbidder.reporting import format_ranking
-from busbidder.scoring import rank_offers
+from busbidder.scoring import check_weights, rank_offers
 from busbidder.validation import load_companies, load_destinations, load_offers, save_rejected
 
 DATA = Path(__file__).parent / "data"
@@ -31,6 +32,18 @@ def read_date(text):
         return datetime.strptime(text, "%Y-%m-%d").date()
     except ValueError:
         raise argparse.ArgumentTypeError(f"date must be YYYY-MM-DD: {text}")
+
+
+def read_weights(text):
+    """Turn "price=0.4,duration=0.3,departure=0.1,flexibility=0.2" into a dictionary."""
+    weights = {}
+    for part in text.split(","):
+        name, _, value = part.partition("=")
+        try:
+            weights[name.strip()] = float(value)
+        except ValueError:
+            raise argparse.ArgumentTypeError(f"weights must look like price=0.4,duration=0.3: {text}")
+    return weights
 
 
 def load_data(offers_file):
@@ -66,6 +79,14 @@ def cmd_search(args):
         raise InvalidRequestError(f"unknown profile: {args.profile} (choose from {', '.join(profiles)})")
     profile = profiles[args.profile]
 
+    # Own weights or departure hour replace the ones from the profile.
+    if args.weights:
+        check_weights(args.weights)
+        profile = Profile("custom", "weights given on the command line",
+                          profile.preferred_hour, args.weights)
+    if args.leave_at is not None:
+        profile.preferred_hour = args.leave_at
+
     kept, removed = filter_offers(offers, request)
     show_filter(offers, kept, removed)
     if not kept:
@@ -74,8 +95,12 @@ def cmd_search(args):
 
     print(f"Profile: {profile.name} ({profile.description})")
     print("Weights: " + ", ".join(f"{n} {w:.0%}" for n, w in profile.weights.items() if w > 0))
+    print(f"Preferred departure: {profile.preferred_hour:02d}:00")
     print()
     print(format_ranking(rank_offers(kept, profile), profile, args.top))
+    print()
+    print("The top offer is the best match for these hard rules and weights, "
+          "not the best offer in general.")
 
 
 def cmd_compare(args):
@@ -133,6 +158,10 @@ def build_parser():
     search = sub.add_parser("search", help="rank offers for one profile")
     add_request_args(search)
     search.add_argument("--profile", default="balanced")
+    search.add_argument("--weights", type=read_weights,
+                        help="own weights, for example price=0.4,duration=0.25,departure=0.15,flexibility=0.2")
+    search.add_argument("--leave-at", type=int, choices=range(24), metavar="HOUR",
+                        help="preferred departure hour, 0 to 23")
     search.add_argument("--top", type=int, default=5)
     search.set_defaults(func=cmd_search)
 

@@ -8,16 +8,19 @@
 
 Profile: eco (Wants the lowest CO2 for a fair price)
 Weights: price 25%, duration 10%, departure 10%, flexibility 10%, co2 45%
+Preferred departure: 10:00
 
  #  Offer           Company         Leaves          EUR   Hrs Price   Dur   Dep  Flex   CO2  Total
 --------------------------------------------------------------------------------------------------
  1  VER-MAL-0713-1  VerdeBus        13 Jul 12:30  53.01   7.1     5    86    82   100   100   73.0
-    Best on flexibility (100) and co2 (100), worst on price (5).
+    Strong on flexibility (100) and co2 (100). Weakest on price (5).
  2  COS-MAL-0713-1  CostaLink       13 Jul 09:30  41.61   7.3    50    74   100    74    30   51.0
-    Best on departure (100) and flexibility (74), worst on co2 (30).
+    Strong on departure (100) and flexibility (74). Weakest on co2 (30).
  3  COS-MAL-0712-2  CostaLink       12 Jul 16:00  38.42   7.3    63    74    51    74    30   49.3
-    Best on flexibility (74) and duration (74), worst on co2 (30).
+    Strong on flexibility (74) and duration (74). Weakest on co2 (30).
  4  COS-MAL-0714-1  CostaLink       14 Jul 11:30  36.59   7.3    70    74    91     0    30   47.7
-    Best on departure (91) and duration (74), worst on flexibility (0).
+    Strong on departure (91) and duration (74). Weakest on flexibility (0).
  5  NOC-MAL-0714-1  NocheVia        14 Jul 21:30  29.76   8.6    98    13     2     0    44   45.7
-    Best on price (98) and co2 (44), worst on flexibility (0).
+    Strong on price (98). Weakest on flexibility (0).
+
+The top offer is the best match for these hard rules and weights, not the best offer in general.

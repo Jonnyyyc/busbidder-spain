@@ -131,3 +131,22 @@ transfers and rating as extra criteria.
 
 - README has the exact commands. `examples/` has the output from each command, the test
   run and the log file.
+
+## After checking against the brief again
+
+- The brief says the traveller must be able to set the importance of each criterion.
+  Added `--weights` so this works without editing `profiles.json`. The weights are
+  checked the same way as the profiles.
+- Added `--leave-at` for the preferred departure hour ("morning" in the brief example).
+- The output now ends with a line saying the top offer is only best for these rules and
+  weights, since the brief says not to call it objectively best.
+- Explanation changed so "strong on" only lists criteria with 50 or more. Before it could
+  say "best on duration (0)" for a weak offer.
+- Brief example (MAL, 12 to 14 July, max EUR 50, max 1 transfer, changeable, 08:00):
+  5 offers left. Balanced, business, flexible and eco pick CostaLink 14 Jul 10:30.
+  Budget picks SolRuta 14 Jul 15:30. That CostaLink bus has only 1 seat left, so after
+  one booking it drops out of the next search.
+- Eco cannot pick VerdeBus here because every VerdeBus offer is over EUR 50. The hard
+  rule decides more than the weights in this case.
+- With only 5 offers, min-max is harsh. SolRuta at EUR 30.14 gets 100 on price and the
+  CostaLink bus at EUR 44.95 gets 0, even though the gap is about EUR 15.

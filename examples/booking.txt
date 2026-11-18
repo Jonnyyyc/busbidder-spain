@@ -1,13 +1,24 @@
-> python main.py book VER-MAL-0713-1 --name "Ana Garcia" --seats 2
+> python main.py book COS-MAL-0714-2 --name "Ana Garcia"
 
-Booking confirmed: BB-20261116-A5CFU
+Booking confirmed: BB-20261118-2TXST
 Traveller: Ana Garcia
-Trip: VerdeBus, Madrid to Malaga
-Leaves 13 Jul 2026 12:30, arrives 13 Jul 19:35
-Seats: 2, total EUR 106.02
+Trip: CostaLink, Madrid to Malaga
+Leaves 14 Jul 2026 10:30, arrives 14 Jul 17:50
+Seats: 1, total EUR 44.95
 Changeable: yes, refundable: yes
-Seats left on this bus: 8
+Seats left on this bus: 0
 
-> python main.py book VER-MAL-0713-1 --name "Ana Garcia" --seats 30
+> python main.py book COS-MAL-0714-2 --name "Ben Ruiz"
 
-Error: only 8 seats left on VER-MAL-0713-1
+Error: not enough seats on COS-MAL-0714-2, 0 left
+
+> python main.py search MAL --from 2026-07-12 --to 2026-07-14 --max-price 50 --max-transfers 1 --changeable --leave-at 8 (after the booking)
+
+839 offers loaded, 4 pass the hard rules.
+  removed 781: wrong destination
+  removed  36: outside travel dates
+  removed   3: not enough seats
+  removed   6: over max price
+  removed   9: not changeable
+
+Profile: balanced (Uses the example weights from the brief)

@@ -1,22 +1,31 @@
-2026-11-16 17:05:33,956 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
-2026-11-16 17:05:34,309 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
-2026-11-16 17:05:34,663 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
-2026-11-16 17:05:35,020 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
-2026-11-16 17:05:35,374 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
-2026-11-16 17:05:35,732 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
-2026-11-16 17:05:36,083 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
-2026-11-16 17:05:36,443 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
-2026-11-16 17:05:36,452 ERROR root: only 8 seats left on VER-MAL-0713-1
-2026-11-16 17:05:36,841 WARNING busbidder.validation: Row 2 rejected (price_eur): price must be above 0: -12.5
-2026-11-16 17:05:36,841 WARNING busbidder.validation: Row 3 rejected (destination): unknown destination: XXX
-2026-11-16 17:05:36,841 WARNING busbidder.validation: Row 4 rejected (departure): not a valid date and time: 2026-07-32 08:00
-2026-11-16 17:05:36,841 WARNING busbidder.validation: Row 5 rejected (arrival): arrival is before departure
-2026-11-16 17:05:36,842 WARNING busbidder.validation: Row 6 rejected (rating): rating must be between 1 and 5: 7.2
-2026-11-16 17:05:36,842 WARNING busbidder.validation: Row 7 rejected (seats_available): cannot be negative: -3
-2026-11-16 17:05:36,842 WARNING busbidder.validation: Row 8 rejected (offer_id): wrong ID format: sol_bar_12
-2026-11-16 17:05:36,842 WARNING busbidder.validation: Row 9 rejected (price_eur): missing value
-2026-11-16 17:05:36,842 WARNING busbidder.validation: Row 10 rejected (transfers): not a number: two
-2026-11-16 17:05:36,842 WARNING busbidder.validation: Row 11 rejected (company): unknown company: BUS
-2026-11-16 17:05:36,842 WARNING busbidder.validation: Row 12 rejected (changeable): must be yes or no: maybe
-2026-11-16 17:05:36,842 WARNING busbidder.validation: Row 14 rejected (offer_id): duplicate ID: SOL-BAR-0716-1
-2026-11-16 17:05:36,842 INFO busbidder.validation: Loaded 1 offers from offers_invalid.csv, 12 rejected, 0 sold out
+2026-11-18 10:34:48,114 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:48,469 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:48,806 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:49,169 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:49,500 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:49,838 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:50,191 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:50,529 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:50,881 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:51,242 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:51,579 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:51,926 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:52,286 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:52,286 ERROR root: weight for price must be between 0 and 0.5: 0.7
+2026-11-18 10:34:52,618 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:52,952 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:52,960 ERROR root: not enough seats on COS-MAL-0714-2, 0 left
+2026-11-18 10:34:53,286 INFO busbidder.validation: Loaded 839 offers from offers.csv, 0 rejected, 54 sold out
+2026-11-18 10:34:53,613 WARNING busbidder.validation: Row 2 rejected (price_eur): price must be above 0: -12.5
+2026-11-18 10:34:53,613 WARNING busbidder.validation: Row 3 rejected (destination): unknown destination: XXX
+2026-11-18 10:34:53,613 WARNING busbidder.validation: Row 4 rejected (departure): not a valid date and time: 2026-07-32 08:00
+2026-11-18 10:34:53,613 WARNING busbidder.validation: Row 5 rejected (arrival): arrival is before departure
+2026-11-18 10:34:53,613 WARNING busbidder.validation: Row 6 rejected (rating): rating must be between 1 and 5: 7.2
+2026-11-18 10:34:53,614 WARNING busbidder.validation: Row 7 rejected (seats_available): cannot be negative: -3
+2026-11-18 10:34:53,614 WARNING busbidder.validation: Row 8 rejected (offer_id): wrong ID format: sol_bar_12
+2026-11-18 10:34:53,614 WARNING busbidder.validation: Row 9 rejected (price_eur): missing value
+2026-11-18 10:34:53,614 WARNING busbidder.validation: Row 10 rejected (transfers): not a number: two
+2026-11-18 10:34:53,614 WARNING busbidder.validation: Row 11 rejected (company): unknown company: BUS
+2026-11-18 10:34:53,614 WARNING busbidder.validation: Row 12 rejected (changeable): must be yes or no: maybe
+2026-11-18 10:34:53,614 WARNING busbidder.validation: Row 14 rejected (offer_id): duplicate ID: SOL-BAR-0716-1
+2026-11-18 10:34:53,614 INFO busbidder.validation: Loaded 1 offers from offers_invalid.csv, 12 rejected, 0 sold out

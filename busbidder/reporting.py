@@ -5,13 +5,17 @@ SHORT_NAMES = {"price": "Price", "duration": "Dur", "departure": "Dep",
 
 
 def explain(result, profile):
-    """Name the two criteria the offer scored best on and the one it scored worst on."""
+    """Name up to two criteria the offer is strong on (50 or more) and the one it is weakest on."""
     names = [n for n, w in profile.weights.items() if w > 0]
     names.sort(key=lambda n: result.scores[n], reverse=True)
 
-    best = [f"{n} ({result.scores[n]:.0f})" for n in names[:2]]
+    strong = [f"{n} ({result.scores[n]:.0f})" for n in names[:2] if result.scores[n] >= 50]
     worst = names[-1]
-    text = f"Best on {' and '.join(best)}, worst on {worst} ({result.scores[worst]:.0f})."
+    if strong:
+        text = f"Strong on {' and '.join(strong)}."
+    else:
+        text = "Not strong on any criterion."
+    text += f" Weakest on {worst} ({result.scores[worst]:.0f})."
 
     offer = result.offer
     if offer.co2_kg is None and "co2" in profile.weights:

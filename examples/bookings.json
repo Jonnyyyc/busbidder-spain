@@ -1,0 +1,12 @@
+[
+  {
+    "reference": "BB-20261118-2TXST",
+    "offer_id": "COS-MAL-0714-2",
+    "traveller": "Ana Garcia",
+    "seats": 1,
+    "total_eur": 44.95,
+    "changeable": true,
+    "refundable": true,
+    "booked_at": "2026-11-18 10:34"
+  }
+]

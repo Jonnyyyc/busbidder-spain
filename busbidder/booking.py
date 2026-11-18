@@ -82,7 +82,7 @@ def book(offer, traveller, seats, bookings):
     if seats < 1:
         raise BookingError("must book at least 1 seat")
     if offer.seats_available < seats:
-        raise BookingError(f"only {offer.seats_available} seats left on {offer.offer_id}")
+        raise BookingError(f"not enough seats on {offer.offer_id}, {offer.seats_available} left")
 
     booking = Booking(
         reference=new_reference(bookings),

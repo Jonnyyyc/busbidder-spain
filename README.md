@@ -25,6 +25,19 @@ Rank offers for one profile:
 python main.py search MAL --from 2026-07-12 --to 2026-07-14 --seats 2 --max-price 60 --profile budget
 ```
 
+The example request from the brief (Malaga, 12 to 14 July, max EUR 50, max 1 transfer,
+changeable ticket, morning departure):
+
+```
+python main.py search MAL --from 2026-07-12 --to 2026-07-14 --max-price 50 --max-transfers 1 --changeable --leave-at 8
+```
+
+Use your own weights instead of a profile:
+
+```
+python main.py search MAL --from 2026-07-12 --to 2026-07-14 --weights price=0.4,duration=0.25,departure=0.15,flexibility=0.2
+```
+
 Show the top 2 offers for every profile:
 
 ```
@@ -34,7 +47,7 @@ python main.py compare MAL --from 2026-07-12 --to 2026-07-14 --seats 2 --max-pri
 Book an offer:
 
 ```
-python main.py book VER-MAL-0713-1 --name "Ana Garcia" --seats 2
+python main.py book COS-MAL-0714-2 --name "Ana Garcia"
 ```
 
 Check a data file and list the rows that were rejected:
@@ -68,6 +81,8 @@ python data_generator.py
 | `--max-transfers` | max number of transfers |
 | `--changeable` | only show changeable tickets |
 | `--profile` | balanced, budget, business, flexible or eco |
+| `--weights` | own weights, for example `price=0.4,duration=0.25,departure=0.15,flexibility=0.2` |
+| `--leave-at` | preferred departure hour (0 to 23), replaces the one in the profile |
 | `--top` | how many results to show, default 5 |
 
 The data covers 10 to 17 July 2026.
@@ -91,7 +106,7 @@ data/
     offers_invalid.csv  rows with planted errors, used to test validation
     profiles.json       weights for each traveller profile
 tests/                  pytest tests
-examples/               saved output from the commands above
+examples/               saved output used in the report
 NOTES.md                decisions made while building the project
 ```
 

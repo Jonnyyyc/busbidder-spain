@@ -2,6 +2,7 @@ import pytest
 
 from busbidder.errors import InvalidRequestError
 from busbidder.profiles import load_profiles
+from busbidder.reporting import explain
 from busbidder.scoring import CRITERIA, check_weights, normalise, rank_offers
 
 
@@ -76,6 +77,15 @@ def test_scores_stay_between_0_and_100(make_offer, balanced):
     for result in rank_offers(offers, balanced):
         assert 0 <= result.total <= 100
         assert all(0 <= s <= 100 for s in result.scores.values())
+
+
+def test_explanation_names_strong_and_weak_points(make_offer, balanced):
+    cheap_slow = make_offer("SOL-MAL-0712-1", price=20, hours=9)
+    dear_fast = make_offer("SOL-MAL-0712-2", price=40, hours=6)
+    ranked = rank_offers([cheap_slow, dear_fast], balanced)
+    text = explain(ranked[0], balanced)
+    assert text.startswith("Strong on price (100)")
+    assert "Weakest on duration (0)" in text
 
 
 def test_profiles_file_is_valid():

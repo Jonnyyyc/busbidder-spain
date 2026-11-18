@@ -38,6 +38,7 @@ tests/test_scoring.py::test_weight_limit_is_allowed PASSED
 tests/test_scoring.py::test_cheaper_and_faster_offer_wins PASSED
 tests/test_scoring.py::test_tie_is_broken_by_offer_id PASSED
 tests/test_scoring.py::test_scores_stay_between_0_and_100 PASSED
+tests/test_scoring.py::test_explanation_names_strong_and_weak_points PASSED
 tests/test_scoring.py::test_profiles_file_is_valid PASSED
 tests/test_validation.py::test_good_row_is_accepted PASSED
 tests/test_validation.py::test_full_dataset_loads_without_rejections PASSED
@@ -67,4 +68,4 @@ tests/test_validation.py::test_short_row_is_rejected_not_crashing PASSED
 tests/test_validation.py::test_spaces_around_values_are_removed PASSED
 tests/test_validation.py::test_missing_file PASSED
 tests/test_validation.py::test_missing_columns PASSED
-============================= 67 passed in 0.33s ==============================
+============================= 68 passed in 0.24s ==============================

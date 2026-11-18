@@ -1,0 +1,27 @@
+> python main.py search MAL --from 2026-07-12 --to 2026-07-14 --max-price 50 --max-transfers 1 --changeable --leave-at 8 --weights price=0.25,duration=0.25,departure=0.25,flexibility=0.25
+
+839 offers loaded, 5 pass the hard rules.
+  removed 781: wrong destination
+  removed  36: outside travel dates
+  removed   2: not enough seats
+  removed   6: over max price
+  removed   9: not changeable
+
+Profile: custom (weights given on the command line)
+Weights: price 25%, duration 25%, departure 25%, flexibility 25%
+Preferred departure: 08:00
+
+ #  Offer           Company         Leaves          EUR   Hrs Price   Dur   Dep  Flex  Total
+--------------------------------------------------------------------------------------------
+ 1  COS-MAL-0714-2  CostaLink       14 Jul 10:30  44.95   7.3     0   100    92   100   73.1
+    Strong on duration (100) and flexibility (100). Weakest on price (0).
+ 2  COS-MAL-0713-1  CostaLink       13 Jul 09:30  41.61   7.3    21   100   100     0   55.3
+    Strong on duration (100) and departure (100). Weakest on flexibility (0).
+ 3  SOL-MAL-0714-1  SolRuta         14 Jul 15:30  30.14   8.3   100    44    44     0   47.0
+    Strong on price (100). Weakest on flexibility (0).
+ 4  COS-MAL-0712-2  CostaLink       12 Jul 16:00  38.42   7.3    47   100    39     0   46.4
+    Strong on duration (100). Weakest on flexibility (0).
+ 5  NOC-MAL-0713-1  NocheVia        13 Jul 21:00  40.82   9.3    28     0     0     0    6.9
+    Not strong on any criterion. Weakest on flexibility (0).
+
+The top offer is the best match for these hard rules and weights, not the best offer in general.
