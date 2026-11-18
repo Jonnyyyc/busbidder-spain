@@ -50,8 +50,7 @@ def load_data(offers_file):
     companies = load_companies(DATA / "companies.csv")
     destinations = load_destinations(DATA / "destinations.csv")
     offers, rejected = load_offers(offers_file, companies, destinations)
-    if rejected:
-        save_rejected(rejected, OUTPUT / "rejected_offers.csv")
+    save_rejected(rejected, OUTPUT / "rejected_offers.csv")
     apply_bookings(offers, load_bookings(BOOKINGS))
     return destinations, offers, rejected
 
@@ -78,6 +77,8 @@ def cmd_search(args):
     if args.profile not in profiles:
         raise InvalidRequestError(f"unknown profile: {args.profile} (choose from {', '.join(profiles)})")
     profile = profiles[args.profile]
+    if args.top < 1:
+        raise InvalidRequestError("--top must be at least 1")
 
     # Own weights or departure hour replace the ones from the profile.
     if args.weights:
@@ -137,7 +138,7 @@ def cmd_validate(args):
     for row in rejected:
         print(f"  row {row['row']:>3}  {row['field']:<16} {row['reason']}")
     if rejected:
-        print(f"Rejected rows saved to {OUTPUT / 'rejected_offers.csv'}")
+        print(f"Rejected rows saved to {Path('output', 'rejected_offers.csv')}")
 
 
 def build_parser():

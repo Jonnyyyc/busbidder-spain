@@ -91,3 +91,21 @@ def test_explanation_names_strong_and_weak_points(make_offer, balanced):
 def test_profiles_file_is_valid():
     profiles = load_profiles("data/profiles.json")
     assert len(profiles) >= 3
+
+
+def test_one_offer_has_no_weakest_point(make_offer, balanced):
+    ranked = rank_offers([make_offer()], balanced)
+    assert "Weakest" not in explain(ranked[0], balanced)
+
+
+def test_weight_must_be_a_number():
+    with pytest.raises(InvalidRequestError):
+        check_weights({"price": "0.4", "duration": 0.3, "departure": 0.15, "flexibility": 0.15})
+
+
+def test_profile_hour_must_be_a_whole_number(tmp_path):
+    path = tmp_path / "profiles.json"
+    path.write_text('{"x": {"description": "d", "preferred_hour": "10", "weights": '
+                    '{"price": 0.4, "duration": 0.25, "departure": 0.15, "flexibility": 0.2}}}')
+    with pytest.raises(InvalidRequestError):
+        load_profiles(path)

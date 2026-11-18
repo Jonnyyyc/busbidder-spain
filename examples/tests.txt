@@ -12,6 +12,8 @@ tests/test_booking.py::test_bookings_are_saved_and_applied PASSED
 tests/test_booking.py::test_bad_reference_in_file PASSED
 tests/test_booking.py::test_broken_bookings_file PASSED
 tests/test_booking.py::test_no_bookings_file_gives_empty_list PASSED
+tests/test_booking.py::test_wrong_content_in_bookings_file[not a list] PASSED
+tests/test_booking.py::test_wrong_content_in_bookings_file[reference not text] PASSED
 tests/test_filtering.py::test_offer_that_fits_is_kept PASSED
 tests/test_filtering.py::test_each_rule_removes_an_offer PASSED
 tests/test_filtering.py::test_boundaries_are_kept PASSED
@@ -40,6 +42,9 @@ tests/test_scoring.py::test_tie_is_broken_by_offer_id PASSED
 tests/test_scoring.py::test_scores_stay_between_0_and_100 PASSED
 tests/test_scoring.py::test_explanation_names_strong_and_weak_points PASSED
 tests/test_scoring.py::test_profiles_file_is_valid PASSED
+tests/test_scoring.py::test_one_offer_has_no_weakest_point PASSED
+tests/test_scoring.py::test_weight_must_be_a_number PASSED
+tests/test_scoring.py::test_profile_hour_must_be_a_whole_number PASSED
 tests/test_validation.py::test_good_row_is_accepted PASSED
 tests/test_validation.py::test_full_dataset_loads_without_rejections PASSED
 tests/test_validation.py::test_every_planted_error_is_caught PASSED
@@ -68,4 +73,5 @@ tests/test_validation.py::test_short_row_is_rejected_not_crashing PASSED
 tests/test_validation.py::test_spaces_around_values_are_removed PASSED
 tests/test_validation.py::test_missing_file PASSED
 tests/test_validation.py::test_missing_columns PASSED
-============================= 68 passed in 0.24s ==============================
+tests/test_validation.py::test_bad_distance_in_destinations PASSED
+============================= 74 passed in 0.26s ==============================

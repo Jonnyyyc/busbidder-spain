@@ -77,3 +77,15 @@ def test_broken_bookings_file(tmp_path):
 
 def test_no_bookings_file_gives_empty_list(tmp_path):
     assert load_bookings(tmp_path / "missing.json") == []
+
+
+@pytest.mark.parametrize("content", [
+    "5",
+    '[{"reference": 5, "offer_id": "a", "traveller": "b", "seats": 1, "total_eur": 1, '
+    '"changeable": false, "refundable": false, "booked_at": ""}]',
+], ids=["not a list", "reference not text"])
+def test_wrong_content_in_bookings_file(tmp_path, content):
+    path = tmp_path / "bookings.json"
+    path.write_text(content)
+    with pytest.raises(BookingError):
+        load_bookings(path)

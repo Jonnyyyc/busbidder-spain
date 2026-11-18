@@ -150,3 +150,12 @@ transfers and rating as extra criteria.
   rule decides more than the weights in this case.
 - With only 5 offers, min-max is harsh. SolRuta at EUR 30.14 gets 100 on price and the
   CostaLink bus at EUR 44.95 gets 0, even though the gap is about EUR 15.
+
+## Last code check (18 Nov)
+
+- Broken config files (text hour in profiles.json, bad distance, bookings.json that is not a list) now give a normal error instead of a crash.
+- `--top` must be at least 1. Before, `--top -1` hid the last offer.
+- rejected_offers.csv is always written, so an old one is not left behind.
+- With one offer left, the explanation no longer names a "weakest" criterion that scored 100.
+- The validate command prints the short path to the rejected file.
+- 74 tests now.

@@ -36,13 +36,16 @@ def load_bookings(path):
     except json.JSONDecodeError:
         raise BookingError(f"{path.name} is not valid JSON. Fix or delete the file.")
 
+    if not isinstance(data, list):
+        raise BookingError(f"{path.name} should contain a list of bookings. Fix or delete the file.")
+
     bookings = []
     for item in data:
         try:
             booking = Booking(**item)
         except TypeError:
             raise BookingError(f"booking in {path.name} has wrong or missing fields: {item}")
-        if not BOOKING_REF.fullmatch(booking.reference):
+        if not isinstance(booking.reference, str) or not BOOKING_REF.fullmatch(booking.reference):
             raise BookingError(f"bad booking reference in {path.name}: {booking.reference}")
         bookings.append(booking)
     return bookings

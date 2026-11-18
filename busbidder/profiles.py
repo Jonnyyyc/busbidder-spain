@@ -25,13 +25,16 @@ def load_profiles(path):
     except json.JSONDecodeError as error:
         raise DataFileError(f"{path} is not valid JSON: {error}")
 
+    if not isinstance(data, dict):
+        raise DataFileError(f"{path} should contain one entry per profile")
+
     profiles = {}
     for name, values in data.items():
         try:
             profile = Profile(name, values["description"], values["preferred_hour"], values["weights"])
         except KeyError as error:
             raise InvalidRequestError(f"profile {name} is missing {error}")
-        if not 0 <= profile.preferred_hour <= 23:
+        if not isinstance(profile.preferred_hour, int) or not 0 <= profile.preferred_hour <= 23:
             raise InvalidRequestError(f"profile {name}: preferred hour must be 0 to 23")
         try:
             check_weights(profile.weights)

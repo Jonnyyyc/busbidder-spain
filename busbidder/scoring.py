@@ -62,7 +62,7 @@ def check_weights(weights):
     for name, weight in weights.items():
         if name not in CRITERIA:
             raise InvalidRequestError(f"unknown criterion: {name}")
-        if not 0 <= weight <= MAX_WEIGHT:
+        if not isinstance(weight, (int, float)) or not 0 <= weight <= MAX_WEIGHT:
             raise InvalidRequestError(f"weight for {name} must be between 0 and {MAX_WEIGHT}: {weight}")
     if len([w for w in weights.values() if w > 0]) < 4:
         raise InvalidRequestError("at least 4 criteria must have a weight above 0")

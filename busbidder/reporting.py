@@ -15,7 +15,9 @@ def explain(result, profile):
         text = f"Strong on {' and '.join(strong)}."
     else:
         text = "Not strong on any criterion."
-    text += f" Weakest on {worst} ({result.scores[worst]:.0f})."
+    # With one offer left every score is 100, so there is no weak point to name.
+    if result.scores[worst] < 100:
+        text += f" Weakest on {worst} ({result.scores[worst]:.0f})."
 
     offer = result.offer
     if offer.co2_kg is None and "co2" in profile.weights:

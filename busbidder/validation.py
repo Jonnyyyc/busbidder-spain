@@ -55,8 +55,11 @@ def load_companies(path):
 def load_destinations(path):
     destinations = {}
     for row in read_csv(path, ["code", "name", "distance_km", "coastal"]):
-        destinations[row["code"]] = Destination(
-            row["code"], row["name"], int(row["distance_km"]), row["coastal"] == "yes")
+        try:
+            distance = int(row["distance_km"])
+        except ValueError:
+            raise DataFileError(f"distance for {row['code']} is not a whole number: {row['distance_km']}")
+        destinations[row["code"]] = Destination(row["code"], row["name"], distance, row["coastal"] == "yes")
     return destinations
 
 

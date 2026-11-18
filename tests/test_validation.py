@@ -102,3 +102,10 @@ def test_missing_file():
 def test_missing_columns():
     with pytest.raises(DataFileError):
         read_csv("data/companies.csv", ["code", "price"])
+
+
+def test_bad_distance_in_destinations(tmp_path):
+    path = tmp_path / "destinations.csv"
+    path.write_text("code,name,distance_km,coastal\nMAL,Malaga,far,yes\n")
+    with pytest.raises(DataFileError):
+        load_destinations(path)
