@@ -62,6 +62,12 @@ Run the tests:
 python -m pytest
 ```
 
+Run the experiments used in the report:
+
+```
+python experiments.py
+```
+
 Make the data again (gives the same files every time):
 
 ```
@@ -92,6 +98,7 @@ The data covers 10 to 17 July 2026.
 ```
 main.py                 command line
 data_generator.py       makes the data in data/
+experiments.py          runs the experiments in the report
 busbidder/
     errors.py           custom exceptions
     models.py           Company, Destination, Offer

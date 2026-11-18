@@ -1,0 +1,24 @@
+> python experiments.py
+
+1. Company ranked first, all 15 destinations, 12 to 14 July, no other hard rules
+  balanced  SolRuta 8, CostaLink 4, Camino Express 2, VerdeBus 1  (NocheVia in top 3: 1 of 15)
+  budget    SolRuta 12, CostaLink 2, VerdeBus 1  (NocheVia in top 3: 0 of 15)
+  business  Camino Express 14, VerdeBus 1  (NocheVia in top 3: 0 of 15)
+  flexible  CostaLink 5, Camino Express 4, SolRuta 3, VerdeBus 2, NocheVia 1  (NocheVia in top 3: 2 of 15)
+  eco       VerdeBus 15  (NocheVia in top 3: 0 of 15)
+
+2. Brief request (MAL, max EUR 50, max 1 transfer, changeable, 08:00), price weight changed
+  price 10%: COS-MAL-0714-2 88.3, COS-MAL-0713-1 62.1
+  price 20%: COS-MAL-0714-2 78.4, COS-MAL-0713-1 57.6
+  price 30%: COS-MAL-0714-2 68.6, COS-MAL-0713-1 53.1
+  price 40%: COS-MAL-0714-2 58.8, SOL-MAL-0714-1 57.7
+  price 50%: SOL-MAL-0714-1 64.7, COS-MAL-0712-2 49.2
+
+3. Dataset per company
+  Company         Offers  Avg EUR Changeable  Direct   Leaves
+  SolRuta            240    25.51        18%     48%     7-16
+  Camino Express     183    48.77        69%    100%     6-19
+  CostaLink          176    36.14        49%     64%     8-17
+  VerdeBus           120    39.88        52%     79%     7-18
+  NocheVia           120    29.43        41%     69%    21-23
+  Sold out: 54, missing CO2: 75
